@@ -12,15 +12,15 @@ export default function Cast() {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=a3ec7c1621ade0b1491e66cd43b88745`
     );
-    console.log('response:', response);
+    // console.log('response:', response);
     return response.data.cast;
   };
 
   useEffect(() => {
     getActors(movieId).then(setActors);
   }, [movieId]);
-  console.log('actors:', actors);
-  console.log('useParams:', useParams());
+  // console.log('actors:', actors);
+  // console.log('useParams:', useParams());
 
   return (
     <CastWrap>
@@ -39,7 +39,7 @@ export default function Cast() {
                 {/* if there is NO photo */}
                 {!actor.profile_path && <NoPhoto>NO PHOTO</NoPhoto>}
                 <div>
-                  <p>Actor/actress name: {actor.name}</p>
+                  <p>Actor/actress: {actor.name}</p>
                   <p>Character: {actor.character}</p>
                 </div>
               </ActorCard>

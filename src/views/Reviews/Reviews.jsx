@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Wrap, ReviewsList, AuthorName } from './Reviews.styled';
 
 export default function Reviews() {
-  const [reviews, setReviews] = useState(null);
+  const [reviews, setReviews] = useState([]);
   const { movieId } = useParams();
 
   const getReviews = async movieId => {
@@ -24,18 +24,21 @@ export default function Reviews() {
   // console.log('useParams:', useParams());
 
   return (
-    <Wrap>
-      {/* <h1>Reviews</h1> */}
-      {reviews && (
-        <ReviewsList>
-          {reviews.map(review => (
-            <li key={review.id}>
-              <AuthorName>Author: {review.author}</AuthorName>
-              <p>{review.content}</p>
-            </li>
-          ))}
-        </ReviewsList>
-      )}
-    </Wrap>
+    <>
+      <Wrap>
+        {/* <h1>Reviews</h1> */}
+        {reviews && (
+          <ReviewsList>
+            {reviews.map(review => (
+              <li key={review.id}>
+                <AuthorName>Author: {review.author}</AuthorName>
+                <p>{review.content}</p>
+              </li>
+            ))}
+          </ReviewsList>
+        )}
+        {reviews.length === 0 && <p>No reviews ((</p>}
+      </Wrap>
+    </>
   );
 }

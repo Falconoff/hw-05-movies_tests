@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function MoviesPage() {
-  const [moviesArr, setMoviesArr] = useState([]);
+  const [movies, setMovies] = useState(null);
+  const [inputValue, setInputValue] = useState('');
 
   /*
   axios.defaults.baseURL = 'https://api.themoviedb.org/3';
@@ -26,30 +29,80 @@ export default function MoviesPage() {
   };
 */
 
-  const getMoviesByTrend = async () => {
+  const getMoviesById = async query => {
+    console.log('fetch start');
+
+    console.log('query is: ', query);
     const response = await axios.get(
-      'https://api.themoviedb.org/3/trending/movie/week?api_key=a3ec7c1621ade0b1491e66cd43b88745'
+      `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=a3ec7c1621ade0b1491e66cd43b88745`
     );
+    // return response.data.results;
+    console.log('fetch end');
+
     return response.data.results;
   };
 
-  useEffect(() => {
-    getMoviesByTrend().then(setMoviesArr);
-  }, []);
+  const onChange = evt => {
+    setInputValue(evt.target.value.toLowerCase());
+  };
+
+  const onSubmit = evt => {
+    evt.preventDefault();
+    console.log('onSubmit received inputValue = ', evt.currentTarget.value);
+
+    // for empty query
+    if (inputValue.trim() === '') {
+      // toast.warn('Please, enter your query');
+      console.log('Pls, enter correct query!');
+      return;
+    }
+    console.log('I had enter correct query))');
+    // submit form
+    // onFormSubmit(inputValue);
+    // setInputValue(evt.target.value.toLowerCase());
+    console.log('inputValue for query is - ', inputValue);
+    getMoviesById(inputValue).then(setMovies);
+    // reset Form
+    setInputValue('');
+  };
+
+  // useEffect(() => {
+  //   console.log('useEffect detected!!! getMoviesById start');
+  //   getMoviesById().then(setMovies);
+  //   console.log('useEffect detected!!! getMoviesById end');
+  // }, []);
+  // console.log('movies:', movies);
 
   return (
     <div>
       <h1>MoviesPage</h1>
-      {console.log(moviesArr)}
-      <ul>
-        {moviesArr.map(movie => {
-          return (
-            <li key={movie.id}>
-              <Link to={`${movie.id}`}>{movie.title}</Link>
-            </li>
-          );
-        })}
-      </ul>
+
+      <form action="" onSubmit={onSubmit}>
+        <input
+          type="text"
+          name="inputValue"
+          value={inputValue}
+          onChange={onChange}
+          autoComplete="off"
+          autoFocus
+          placeholder="Search movies"
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      {movies && (
+        <>
+          <ul>
+            {movies.map(movie => {
+              return (
+                <li key={movie.id}>
+                  <Link to={`${movie.id}`}>{movie.title}</Link>
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      )}
     </div>
   );
 }

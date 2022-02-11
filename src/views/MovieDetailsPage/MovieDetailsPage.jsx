@@ -13,7 +13,7 @@ import {
 
 export default function MovieDetailsPage() {
   const { movieId } = useParams();
-  console.log('params - movieId:', movieId);
+  // console.log('params - movieId:', movieId);
   const [movie, setMovie] = useState(null);
   // const [conf, setConf] = useState(null);
 
@@ -39,7 +39,7 @@ export default function MovieDetailsPage() {
   return (
     <MovieWrapper>
       <h2>Movie details</h2>
-      {console.log('movie:', movie)}
+      {/* {console.log('movie:', movie)} */}
       {/* {console.log('Config:', conf)} */}
 
       {movie && (
@@ -61,6 +61,9 @@ export default function MovieDetailsPage() {
                 <span key={genre.id}>{genre.name} </span>
               ))}
             </p>
+
+            <DetailName>Release date</DetailName>
+            <p>{movie.release_date}</p>
           </div>
         </MovieDetails>
       )}

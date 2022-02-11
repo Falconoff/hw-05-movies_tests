@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import { Header, Link, Footer } from './Layout.styled';
+import { Header, Link, Footer, MainWrapper } from './Layout.styled';
 
 export default function Layout() {
   return (
@@ -12,7 +12,12 @@ export default function Layout() {
         <Link to="params">Params</Link>
       </Header>
 
-      <Outlet />
+      {/* <Outlet>
+        <MainWrapper />
+      </Outlet> */}
+      <MainWrapper>
+        <Outlet />
+      </MainWrapper>
 
       <Footer>2022, GoIT Homework - Movies, Falconoff ©</Footer>
     </>

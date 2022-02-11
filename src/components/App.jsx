@@ -25,6 +25,7 @@ export const App = () => {
       </nav> */}
       <Routes>
         <Route path="/" element={<Layout />}>
+          {/* <MainWrapper> */}
           {/* trends */}
           <Route index element={<HomePage />} />
 
@@ -42,6 +43,7 @@ export const App = () => {
 
           {/* <Route path="*" element={<NotFound />} /> */}
           <Route path="*" element={<HomePage />} />
+          {/* </MainWrapper> */}
         </Route>
       </Routes>
     </AppBody>

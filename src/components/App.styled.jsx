@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const AppBody = styled.div`
-  background-color: #999;
-  /* min-height: 100vh; */
+  /* background-color: #00e; */
+  /* height: 100vh; */
   /* display: flex;
   justify-content: center;
   align-items: center;
@@ -11,3 +11,7 @@ export const AppBody = styled.div`
   color: #010101;
   color: tomato; */
 `;
+
+// export const MainWrapper = styled.div`
+//   height: 500px;
+// `;
