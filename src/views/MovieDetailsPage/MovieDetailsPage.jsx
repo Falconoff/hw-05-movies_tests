@@ -1,4 +1,6 @@
-import { Outlet, useParams } from 'react-router-dom';
+// import { Outlet, useParams, Link } from 'react-router-dom';
+import { Outlet, useParams, Link, useLocation } from 'react-router-dom';
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -8,7 +10,7 @@ import {
   MovieTitle,
   DetailName,
   AdditionalInfoList,
-  Link,
+  LinkItem,
 } from './MovieDetailsPage.styled';
 
 export default function MovieDetailsPage() {
@@ -23,6 +25,10 @@ export default function MovieDetailsPage() {
     );
     return response.data;
   };
+
+  const location = useLocation();
+
+  console.log('location in Movie details:', location);
 
   // const getConfig = async () => {
   //   const response = await axios.get(
@@ -41,6 +47,8 @@ export default function MovieDetailsPage() {
       <h2>Movie details</h2>
       {/* {console.log('movie:', movie)} */}
       {/* {console.log('Config:', conf)} */}
+
+      <Link to={location?.state?.from ?? '/'}>Go back</Link>
 
       {movie && (
         <MovieDetails>
@@ -72,10 +80,18 @@ export default function MovieDetailsPage() {
         <p>Additional information</p>
         <ul>
           <li>
-            <Link to="cast">Cast</Link>
+            {/* передаём в линки state со старым адресом для кнопки Go back */}
+            <LinkItem to="cast" state={{ from: location?.state?.from ?? '/' }}>
+              Cast
+            </LinkItem>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <LinkItem
+              to="reviews"
+              state={{ from: location?.state?.from ?? '/' }}
+            >
+              Reviews
+            </LinkItem>
           </li>
         </ul>
       </AdditionalInfoList>

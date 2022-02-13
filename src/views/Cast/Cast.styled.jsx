@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const CastWrap = styled.div`
-  padding: 20px 40px;
+  /* padding: 20px 40px; */
+  padding-top: 20px;
+  padding-bottom: 20px;
 `;
 
 export const ActorCard = styled.div`

@@ -37,7 +37,9 @@ export default function Reviews() {
             ))}
           </ReviewsList>
         )}
-        {reviews.length === 0 && <p>No reviews ((</p>}
+        {reviews.length === 0 && (
+          <p>We don't have any reviews for this movie</p>
+        )}
       </Wrap>
     </>
   );

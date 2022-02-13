@@ -3,16 +3,17 @@ import { NavLink } from 'react-router-dom';
 
 export const MainWrapper = styled.div`
   min-height: calc(100vh - 130px);
-  background-color: #eee;
+  /* background-color: #eee;   */
   padding: 20px 40px;
 `;
 
 export const Header = styled.header`
   /* background-color: #fff; */
   /* padding: 20px 40px; */
+  display: block;
   padding-left: 40px;
-  box-shadow: 0 14px 50px #444;
-  text-shadow: crimson;
+  box-shadow: 0px 4px 20px #eee;
+  /* z-index: 200; */
 `;
 
 export const Link = styled(NavLink)`
@@ -45,5 +46,5 @@ export const Footer = styled.footer`
   /* width: 100vw; */
   /* background-color: #fff; */
   padding: 20px 40px;
-  box-shadow: 0 -4px 10px #ccc;
+  box-shadow: 0 -4px 20px #ccc;
 `;

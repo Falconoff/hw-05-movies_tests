@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const Wrap = styled.div`
-  padding: 10px 40px;
+  /* padding: 10px 0px; */
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 
 export const ReviewsList = styled.ul`

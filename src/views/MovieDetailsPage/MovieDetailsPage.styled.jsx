@@ -7,7 +7,9 @@ export const MovieWrapper = styled.div`
 
 export const MovieDetails = styled.div`
   display: flex;
-  padding: 20px 40px;
+  /* padding: 20px 0px; */
+  padding-top: 20px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #555;
 
   img {
@@ -16,8 +18,17 @@ export const MovieDetails = styled.div`
     margin-right: 20px;
   }
 
-  p {
+  span {
+    display: inline-block;
+    padding-right: 8px;
     /* margin-bottom: 20px; */
+    /* border-right: 2px solid var(--accent-color); */
+    :not(:first-child) {
+      padding-left: 8px;
+    }
+    :not(:last-child) {
+      border-right: 1px solid var(--accent-color);
+    }
   }
 `;
 
@@ -35,8 +46,9 @@ export const DetailName = styled.p`
 `;
 
 export const AdditionalInfoList = styled.div`
-  padding: 0px 40px;
+  /* padding: 0px 0px; */
   margin-top: 10px;
+  border-bottom: 1px solid #555;
 
   ul {
     padding-left: 20px;
@@ -51,7 +63,7 @@ export const AdditionalInfoList = styled.div`
   } */
 `;
 
-export const Link = styled(NavLink)`
+export const LinkItem = styled(NavLink)`
   font-size: 18px;
   color: #555;
   font-weight: 500;
