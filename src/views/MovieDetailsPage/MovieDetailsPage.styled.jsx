@@ -1,8 +1,22 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 export const MovieWrapper = styled.div`
   /* color: blue; */
+`;
+
+export const GoBackBtn = styled(Link)`
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+
+  :hover,
+  :focus {
+    color: var(--accent-color);
+  }
 `;
 
 export const MovieDetails = styled.div`
@@ -57,10 +71,10 @@ export const AdditionalInfoList = styled.div`
   li:not(:last-child) {
     margin-bottom: 8px;
   }
-  /* a {
-    text-decoration: none;
-    color: inherit;
-  } */
+  a:hover {
+    /* text-decoration: none; */
+    color: var(--accent-color);
+  }
 `;
 
 export const LinkItem = styled(NavLink)`

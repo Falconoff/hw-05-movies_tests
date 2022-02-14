@@ -1,8 +1,9 @@
 // import { useEffect, useState } from 'react';
 import { useState, useEffect } from 'react';
-
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
+
+import { ListItem } from './MoviesPage.styled';
 
 export default function MoviesPage() {
   const [movies, setMovies] = useState(null);
@@ -114,11 +115,11 @@ export default function MoviesPage() {
           <ul>
             {movies.map(movie => {
               return (
-                <li key={movie.id}>
+                <ListItem key={movie.id}>
                   <Link to={`${movie.id}`} state={{ from: location }}>
                     {movie.title}
                   </Link>
-                </li>
+                </ListItem>
               );
             })}
           </ul>

@@ -1,5 +1,5 @@
 // import { Outlet, useParams, Link } from 'react-router-dom';
-import { Outlet, useParams, Link, useLocation } from 'react-router-dom';
+import { Outlet, useParams, useLocation } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -11,6 +11,7 @@ import {
   DetailName,
   AdditionalInfoList,
   LinkItem,
+  GoBackBtn,
 } from './MovieDetailsPage.styled';
 
 export default function MovieDetailsPage() {
@@ -48,7 +49,7 @@ export default function MovieDetailsPage() {
       {/* {console.log('movie:', movie)} */}
       {/* {console.log('Config:', conf)} */}
 
-      <Link to={location?.state?.from ?? '/'}>Go back</Link>
+      <GoBackBtn to={location?.state?.from ?? '/'}>Go back</GoBackBtn>
 
       {movie && (
         <MovieDetails>

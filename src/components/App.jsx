@@ -1,28 +1,30 @@
+import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Contacts from '../views/Contacts/Contacts';
-import HomePage from '../views/HomePage';
-import MoviesPage from '../views/MoviesPage';
+// import Contacts from '../views/Contacts/Contacts';
+// import HomePage from '../views/HomePage';
+// import MoviesPage from '../views/MoviesPage';
 // import NotFound from '../views/NotFound/NotFound';
 import Params from '../views/Params';
 import Single from '../views/Single';
 import Layout from '../components/Layout';
-import MovieDetailsPage from '../views/MovieDetailsPage';
+// import MovieDetailsPage from '../views/MovieDetailsPage';
 import Cast from '../views/Cast';
 import Reviews from '../views/Reviews';
 
 import { AppBody } from './App.styled';
 
+const Contacts = lazy(() => import('../views/Contacts/Contacts'));
+const HomePage = lazy(() => import('../views/HomePage'));
+const MoviesPage = lazy(() => import('../views/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('../views/MovieDetailsPage'));
+
+console.log(Contacts);
+
 export const App = () => {
   return (
     <AppBody>
-      {/* <h2>React homework template</h2> */}
-      {/* <nav>
-        <Link to="/">Home</Link>
-        <Link to="movies">movies</Link>
-        <Link to="contacts">Contacts</Link>
-        <Link to="not">Not</Link>
-      </nav> */}
+      {/* <Suspense fallback={<div>Загрузка...</div>}> */}
       <Routes>
         <Route path="/" element={<Layout />}>
           {/* <MainWrapper> */}
@@ -46,6 +48,7 @@ export const App = () => {
           {/* </MainWrapper> */}
         </Route>
       </Routes>
+      {/* </Suspense> */}
     </AppBody>
   );
 };

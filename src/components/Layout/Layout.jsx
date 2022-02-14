@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { Outlet } from 'react-router-dom';
 
 import { Header, Link, Footer, MainWrapper } from './Layout.styled';
@@ -12,11 +14,10 @@ export default function Layout() {
         <Link to="params">Params</Link>
       </Header>
 
-      {/* <Outlet>
-        <MainWrapper />
-      </Outlet> */}
       <MainWrapper>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </MainWrapper>
 
       <Footer>2022, GoIT Homework - Movies, Falconoff ©</Footer>
