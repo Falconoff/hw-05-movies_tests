@@ -2,7 +2,9 @@
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+
+import { getMovieById } from '../../service/apiService';
 
 import {
   MovieWrapper,
@@ -12,6 +14,7 @@ import {
   AdditionalInfoList,
   LinkItem,
   GoBackBtn,
+  NoPoster,
 } from './MovieDetailsPage.styled';
 
 export default function MovieDetailsPage() {
@@ -20,16 +23,18 @@ export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   // const [conf, setConf] = useState(null);
 
-  const getMoviesById = async movieId => {
-    const response = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=a3ec7c1621ade0b1491e66cd43b88745`
-    );
-    return response.data;
-  };
+  // ======= it works local ===============
+  // const getMovieById = async movieId => {
+  //   const response = await axios.get(
+  //     `https://api.themoviedb.org/3/movie/${movieId}?api_key=a3ec7c1621ade0b1491e66cd43b88745`
+  //   );
+  //   console.log('getMovieById response:', response.data);
+  //   return response.data;
+  // };
 
   const location = useLocation();
 
-  console.log('location in Movie details:', location);
+  // console.log('location in Movie details:', location);
 
   // const getConfig = async () => {
   //   const response = await axios.get(
@@ -39,7 +44,7 @@ export default function MovieDetailsPage() {
   // };
 
   useEffect(() => {
-    getMoviesById(movieId).then(setMovie);
+    getMovieById(movieId).then(setMovie);
     // getConfig().then(setConf);
   }, [movieId]);
 
@@ -53,10 +58,14 @@ export default function MovieDetailsPage() {
 
       {movie && (
         <MovieDetails>
-          <img
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            alt={movie.title}
-          />
+          {movie.poster_path && (
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt={movie.title}
+            />
+          )}
+          {!movie.poster_path && <NoPoster>No poster</NoPoster>}
+
           <div>
             <MovieTitle>{movie.title}</MovieTitle>
             <p>User score: {movie.vote_average * 10}%</p>

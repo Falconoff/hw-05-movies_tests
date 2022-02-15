@@ -1,7 +1,9 @@
 // import { useEffect, useState } from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
+
+import { getMoviesByName } from '../../service/apiService';
 
 import { ListItem } from './MoviesPage.styled';
 
@@ -14,15 +16,22 @@ export default function MoviesPage() {
 
   // console.log('searchParams.get("query"):', searchParams.get('query'));
 
-  console.log('location MoviesPage', location);
+  // console.log('location MoviesPage', location);
 
   useEffect(() => {
     if (!currentQuery) {
-      console.log('=== No currentQuery');
-      // setSearchParams({ query: 123321 });
+      // ==== NOTIFY ====
+      console.log('=== No currentQuery, nothing to fetch');
     } else {
-      console.log('=== Exist currentQuery');
-      getMoviesById(currentQuery).then(setMovies);
+      console.log(
+        '=== Exist currentQuery:',
+        currentQuery,
+        ', lets fetch movie'
+      );
+      // fetch
+      getMoviesByName(currentQuery)
+        .then(response => response.results)
+        .then(setMovies);
     }
   }, [currentQuery]);
 
@@ -46,23 +55,45 @@ export default function MoviesPage() {
     // https://api.themoviedb.org/3/trending/movie/week?api_key=a3ec7c1621ade0b1491e66cd43b88745
   };
 */
-
-  const getMoviesById = async query => {
+  /*
+  // ============== рабочий запрос =======================
+  const getMoviesByName = async query => {
     // console.log('fetch start');
 
     // console.log('query is: ', query);
     const response = await axios.get(
       `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=a3ec7c1621ade0b1491e66cd43b88745`
     );
-    // return response.data.results;
     // console.log('fetch end');
 
     return response.data.results;
   };
+  // =====================================
+*/
 
-  // const onChange = evt => {
-  //   setInputValue(evt.target.value.toLowerCase());
-  // };
+  /*
+  // локально работает
+  const getMoviesByName = async query => {
+    // console.log('fetch start');
+    // console.log('query is: ', query);
+    const API_KEY = 'a3ec7c1621ade0b1491e66cd43b88745';
+    const BaseURL = 'https://api.themoviedb.org/3/';
+
+    try {
+      const response = await axios.get(
+        `${BaseURL}search/movie?query=${query}&api_key=${API_KEY}`
+      );
+      // console.log('fetch end');
+      return response.data;
+    } catch (error) {
+      // return Promise.reject(new Error(error.message));
+      console.error('Error!!! Something went wrong:', error.message);
+      // console.error(error);
+    } finally {
+      console.log('finally fetch end');
+    }
+  };
+*/
 
   const onSubmit = evt => {
     evt.preventDefault();

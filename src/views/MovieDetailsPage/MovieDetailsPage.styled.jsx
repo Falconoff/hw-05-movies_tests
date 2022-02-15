@@ -87,3 +87,14 @@ export const LinkItem = styled(NavLink)`
     color: tomato;
   }
 `;
+
+export const NoPoster = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  height: 300px;
+  border: 2px solid #555;
+  /* padding: 20px 40px; */
+  margin-right: 20px;
+`;

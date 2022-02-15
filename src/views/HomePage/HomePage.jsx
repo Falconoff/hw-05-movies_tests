@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
+
+import { getMoviesByTrend } from '../../service/apiService';
 
 import { ListItem } from './HomePage.styled';
 
@@ -27,16 +29,20 @@ export default function HomePage() {
     // https://api.themoviedb.org/3/trending/movie/week?api_key=a3ec7c1621ade0b1491e66cd43b88745
   };
 */
-
+  /*
+// local works
   const getMoviesByTrend = async () => {
     const response = await axios.get(
       'https://api.themoviedb.org/3/trending/movie/week?api_key=a3ec7c1621ade0b1491e66cd43b88745'
     );
     return response.data.results;
   };
+*/
 
   useEffect(() => {
-    getMoviesByTrend().then(setMoviesArr);
+    getMoviesByTrend()
+      .then(response => response.results)
+      .then(setMoviesArr);
   }, []);
 
   return (
