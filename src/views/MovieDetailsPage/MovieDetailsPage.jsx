@@ -50,7 +50,8 @@ export default function MovieDetailsPage() {
 
   return (
     <MovieWrapper>
-      <h2>Movie details</h2>
+      {/* <h2>Movie details</h2> */}
+
       {/* {console.log('movie:', movie)} */}
       {/* {console.log('Config:', conf)} */}
 

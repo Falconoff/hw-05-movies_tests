@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
 // import PropTypes from 'prop-types';
 
 /*
@@ -71,7 +73,7 @@ export const getMoviesByTrend = () => {
 */
 
 const API_KEY = 'a3ec7c1621ade0b1491e66cd43b88745';
-const BaseURL = 'https://api.themoviedb.org/3/';
+const BaseURL = 'https://api.themoviedb333.org/3/';
 
 export function getMoviesByName(query){
   return fetchMoviesApiData(`${BaseURL}search/movie?query=${query}&api_key=${API_KEY}`)
@@ -104,11 +106,12 @@ export const fetchMoviesApiData = async queryString => {
       `${queryString}`
     );
     console.log('fetch end');
-    return response.data;
+    return await response.data;
   } catch (error) {
     // return Promise.reject(new Error(error.message));
     // ============= NOTIFY =================
     console.error('Error!!! Something went wrong:', error.message);
+    toast.error(error.message);
     // console.error(error);
   } finally {
     console.log('finally fetch end');

@@ -1,5 +1,7 @@
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 // import Contacts from '../views/Contacts/Contacts';
 // import HomePage from '../views/HomePage';
@@ -24,6 +26,7 @@ console.log(Contacts);
 export const App = () => {
   return (
     <AppBody>
+      <ToastContainer />
       {/* <Suspense fallback={<div>Загрузка...</div>}> */}
       <Routes>
         <Route path="/" element={<Layout />}>

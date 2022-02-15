@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router-dom';
 // import axios from 'axios';
+import { toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 import { getMoviesByName } from '../../service/apiService';
 
@@ -22,6 +24,7 @@ export default function MoviesPage() {
     if (!currentQuery) {
       // ==== NOTIFY ====
       console.log('=== No currentQuery, nothing to fetch');
+      // toast.warn('Wow so easy !');
     } else {
       console.log(
         '=== Exist currentQuery:',
@@ -34,6 +37,12 @@ export default function MoviesPage() {
         .then(setMovies);
     }
   }, [currentQuery]);
+
+  useEffect(() => {
+    if (movies && movies.length === 0) {
+      toast.warn('Nothing was found!');
+    }
+  }, [movies]);
 
   /*
   axios.defaults.baseURL = 'https://api.themoviedb.org/3';
@@ -102,7 +111,7 @@ export default function MoviesPage() {
 
     // for empty query
     if (q.trim() === '') {
-      // toast.warn('Please, enter your query');
+      toast.warn('Please, enter your query');
       console.log('Pls, enter correct query!');
       return;
     }
@@ -122,11 +131,12 @@ export default function MoviesPage() {
   //   getMoviesById().then(setMovies);
   //   console.log('useEffect detected!!! getMoviesById end');
   // }, []);
-  // console.log('movies:', movies);
+
+  console.log('Movies Array from State:', movies);
 
   return (
     <div>
-      <h1>MoviesPage</h1>
+      {/* <h1>MoviesPage</h1> */}
 
       <form onSubmit={onSubmit}>
         <input
@@ -143,17 +153,20 @@ export default function MoviesPage() {
 
       {movies && (
         <>
-          <ul>
-            {movies.map(movie => {
-              return (
-                <ListItem key={movie.id}>
-                  <Link to={`${movie.id}`} state={{ from: location }}>
-                    {movie.title}
-                  </Link>
-                </ListItem>
-              );
-            })}
-          </ul>
+          {movies.length > 0 && (
+            <ul>
+              {movies.map(movie => {
+                return (
+                  <ListItem key={movie.id}>
+                    <Link to={`${movie.id}`} state={{ from: location }}>
+                      {movie.title}
+                    </Link>
+                  </ListItem>
+                );
+              })}
+            </ul>
+          )}
+          {movies.length === 0 && <p>Nothing was found</p>}
         </>
       )}
     </div>

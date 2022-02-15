@@ -7,7 +7,7 @@ import { getReviews } from '../../service/apiService';
 import { Wrap, ReviewsList, AuthorName } from './Reviews.styled';
 
 export default function Reviews() {
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState(null);
   const { movieId } = useParams();
 
   // const getReviews = async movieId => {
@@ -30,23 +30,25 @@ export default function Reviews() {
   // let time = new Date.now();
   return (
     <>
-      <Wrap>
-        {/* {console.log(time)} */}
-        {/* <h1>Reviews</h1> */}
-        {reviews && (
-          <ReviewsList>
-            {reviews.map(review => (
-              <li key={review.id}>
-                <AuthorName>Author: {review.author}</AuthorName>
-                <p>{review.content}</p>
-              </li>
-            ))}
-          </ReviewsList>
-        )}
-        {reviews.length === 0 && (
-          <p>We don't have any reviews for this movie</p>
-        )}
-      </Wrap>
+      {reviews && (
+        <Wrap>
+          {/* {console.log(time)} */}
+          {/* <h1>Reviews</h1> */}
+          {reviews.length > 0 && (
+            <ReviewsList>
+              {reviews.map(review => (
+                <li key={review.id}>
+                  <AuthorName>Author: {review.author}</AuthorName>
+                  <p>{review.content}</p>
+                </li>
+              ))}
+            </ReviewsList>
+          )}
+          {reviews.length === 0 && (
+            <p>We don't have any reviews for this movie</p>
+          )}
+        </Wrap>
+      )}
     </>
   );
 }
