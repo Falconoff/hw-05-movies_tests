@@ -97,7 +97,7 @@ export function getReviews(movieId){
 
 // ------- Common Fetch Function -------
 export const fetchMoviesApiData = async queryString => {
-  console.log('fetch start');
+  console.log('fetchMoviesApiData start');
   console.log('queryString is: ', queryString);
   
   try {
@@ -105,7 +105,7 @@ export const fetchMoviesApiData = async queryString => {
       // `${BaseURL}search/movie?query=${query}&api_key=${API_KEY}`
       `${queryString}`
     );
-    console.log('fetch end');
+    // console.log('fetch end');
     return await response.data;
   } catch (error) {
     // return Promise.reject(new Error(error.message));
@@ -114,7 +114,7 @@ export const fetchMoviesApiData = async queryString => {
     toast.error(error.message);
     // console.error(error);
   } finally {
-    console.log('finally fetch end');
+    console.log('fetchMoviesApiData end');
   }
 };
 

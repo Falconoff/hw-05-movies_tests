@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Router } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -14,6 +14,10 @@ import Layout from '../components/Layout';
 import Cast from '../views/Cast';
 import Reviews from '../views/Reviews';
 
+import Test from '../views/Test';
+import Pink from '../views/Test/Pink/Pink';
+import Green from '../views/Test/Green/Green';
+
 import { AppBody } from './App.styled';
 
 const Contacts = lazy(() => import('../views/Contacts/Contacts'));
@@ -21,7 +25,10 @@ const HomePage = lazy(() => import('../views/HomePage'));
 const MoviesPage = lazy(() => import('../views/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('../views/MovieDetailsPage'));
 
-console.log(Contacts);
+// console.log(Contacts);
+
+const lorem =
+  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, itaque explicabo. Libero ab cumque atque perferendis numquam fugiat neque similique, necessitatibus odio praesentium fuga minus facere quam accusamus. Excepturi, ipsum.';
 
 export const App = () => {
   return (
@@ -45,6 +52,12 @@ export const App = () => {
           <Route path="contacts" element={<Contacts />} />
           <Route path="params" element={<Params />} />
           <Route path="contacts/:id" element={<Single />} />
+
+          <Route path="test" element={<Test />}>
+            <Route path="pink" element={<Pink />} />
+            <Route path="green-1" element={<Green />} />
+            <Route path="green-2" element={<Green text={lorem} />} />
+          </Route>
 
           {/* <Route path="*" element={<NotFound />} /> */}
           <Route path="*" element={<HomePage />} />

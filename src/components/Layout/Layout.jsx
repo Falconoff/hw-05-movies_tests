@@ -12,6 +12,7 @@ export default function Layout() {
         <Link to="movies">Movies</Link>
         <Link to="contacts">Contacts</Link>
         <Link to="params">Params</Link>
+        <Link to="test">Test 1</Link>
       </Header>
 
       <MainWrapper>
