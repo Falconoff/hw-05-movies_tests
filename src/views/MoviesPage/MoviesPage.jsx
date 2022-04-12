@@ -18,7 +18,7 @@ export default function MoviesPage() {
 
   console.log('searchParams.get("query"):', searchParams.get('query'));
 
-  // console.log('location MoviesPage', location);
+  console.log('location MoviesPage', location);
 
   useEffect(() => {
     if (!currentQuery) {

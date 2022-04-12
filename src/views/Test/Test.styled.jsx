@@ -9,13 +9,14 @@ export const MyLink = styled(NavLink)`
   text-decoration: none;
   background-color: #ddd;
   border: 1px solid #ccc;
-  box-shadow: 2px 2px 2px 0px #66f;
+  box-shadow: 3px 3px 5px 0px #66f;
 
   &.active {
-    background-color: #eee;
+    background-color: #fff;
     box-shadow: 1px 1px 2px 0px #66f;
   }
   :hover {
-    background-color: #eee;
+    background-color: #fff;
+    /* box-shadow: 3px 3px 5px 0px #44f; */
   }
 `;

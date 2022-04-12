@@ -23,6 +23,9 @@ export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   // const [conf, setConf] = useState(null);
 
+  // const params = useParams();
+  // console.log('PARAMS:', params);
+
   // ======= it works local ===============
   // const getMovieById = async movieId => {
   //   const response = await axios.get(
@@ -34,7 +37,7 @@ export default function MovieDetailsPage() {
 
   const location = useLocation();
 
-  // console.log('location in Movie details:', location);
+  console.log('location in Movie details:', location);
 
   // const getConfig = async () => {
   //   const response = await axios.get(
@@ -52,7 +55,7 @@ export default function MovieDetailsPage() {
     <MovieWrapper>
       {/* <h2>Movie details</h2> */}
 
-      {/* {console.log('movie:', movie)} */}
+      {console.log('movie:', movie)}
       {/* {console.log('Config:', conf)} */}
 
       <GoBackBtn to={location?.state?.from ?? '/'}>Go back</GoBackBtn>

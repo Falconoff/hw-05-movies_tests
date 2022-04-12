@@ -30,6 +30,7 @@ export default function Cast() {
     <>
       {actors && (
         <CastWrap>
+          {actors.length === 0 && <p>No info</p>}
           {actors.length > 0 && (
             <>
               {/* <h1>Cast</h1> */}
@@ -56,7 +57,6 @@ export default function Cast() {
               </CastList>
             </>
           )}
-          {actors.length === 0 && <p>No info</p>}
         </CastWrap>
       )}
     </>

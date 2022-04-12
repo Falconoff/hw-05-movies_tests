@@ -1,12 +1,12 @@
 import { lazy } from 'react';
-import { Routes, Route, Router } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 // import Contacts from '../views/Contacts/Contacts';
 // import HomePage from '../views/HomePage';
 // import MoviesPage from '../views/MoviesPage';
-// import NotFound from '../views/NotFound/NotFound';
+import NotFound from '../views/NotFound/NotFound';
 import Params from '../views/Params';
 import Single from '../views/Single';
 import Layout from '../components/Layout';
@@ -38,12 +38,14 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           {/* <MainWrapper> */}
+
           {/* trends */}
           <Route index element={<HomePage />} />
 
           {/* search form */}
           <Route path="movies" element={<MoviesPage />} />
-          {/* single movie page */}
+
+          {/* single movie page with sub-pages */}
           <Route path="movies/:movieId" element={<MovieDetailsPage />}>
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
@@ -57,10 +59,24 @@ export const App = () => {
             <Route path="pink" element={<Pink />} />
             <Route path="green-1" element={<Green />} />
             <Route path="green-2" element={<Green text={lorem} />} />
+            <Route
+              index
+              element={
+                <main
+                  style={{
+                    padding: '10px',
+                    marginTop: '10px',
+                    outline: '3px solid gold',
+                  }}
+                >
+                  <p>INDEX</p>
+                </main>
+              }
+            />
           </Route>
 
-          {/* <Route path="*" element={<NotFound />} /> */}
-          <Route path="*" element={<HomePage />} />
+          <Route path="*" element={<NotFound />} />
+          {/* <Route path="*" element={<HomePage />} /> */}
           {/* </MainWrapper> */}
         </Route>
       </Routes>
