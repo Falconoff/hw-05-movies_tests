@@ -60,6 +60,35 @@ export const App = () => {
             <Route path="green-1" element={<Green />} />
             <Route path="green-2" element={<Green text={lorem} />} />
             <Route
+              path="test-1"
+              element={
+                <main
+                  style={{
+                    padding: '10px',
+                    marginTop: '10px',
+                    outline: '3px solid gold',
+                  }}
+                >
+                  <p>test-1</p>
+                </main>
+              }
+            />
+            <Route
+              path="test-2"
+              element={
+                <main
+                  style={{
+                    padding: '10px',
+                    marginTop: '10px',
+                    outline: '3px solid gold',
+                  }}
+                >
+                  <p>test-2</p>
+                </main>
+              }
+            />
+
+            <Route
               index
               element={
                 <main

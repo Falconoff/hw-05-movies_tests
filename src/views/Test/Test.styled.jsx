@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const MyLink = styled(NavLink)`
-  color: blue;
+  /* color: blue; */
   display: inline-block;
   padding: 10px;
   margin: 10px;
